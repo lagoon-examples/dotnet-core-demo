@@ -14,4 +14,4 @@ WORKDIR /app/
 RUN dotnet build
 EXPOSE 3000
 
-CMD ["dotnet", "run"]
+CMD ["dotnet", "run","--no-build"]
