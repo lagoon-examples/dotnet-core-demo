@@ -9,7 +9,8 @@ builder.Services.AddRazorPages();
 var dbname = Environment.GetEnvironmentVariable("MARIADB_DATABASE");
 var dbuser = Environment.GetEnvironmentVariable("MARIADB_USER");
 var dbpass = Environment.GetEnvironmentVariable("MARIADB_PASSWORD");
-var dbhost = "mariadb";
+var dbhostEnv = Environment.GetEnvironmentVariable("MARIADB_PASSWORD");
+var dbhost = dbhostEnv != null ? dbhostEnv : "mariadb";
 var connstring = "Server=" + dbhost + ";Database=" + dbname + ";Uid=" + dbuser + ";Pwd=" + dbpass + ";";
 var serverVersion = new MariaDbServerVersion(new Version(10, 6));
 //builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found."))
