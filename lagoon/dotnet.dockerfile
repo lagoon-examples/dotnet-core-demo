@@ -14,5 +14,6 @@ WORKDIR /app/
 RUN dotnet build
 EXPOSE 3000
 
-# CMD ["dotnet", "run","--no-build"]
-CMD ["sleep", "50000"]
+RUN adduser user -u 10000 
+
+CMD ["dotnet", "run","--no-build"]
