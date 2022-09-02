@@ -14,6 +14,7 @@ WORKDIR /app/
 RUN dotnet build
 EXPOSE 3000
 
-RUN adduser user -u 10000 
+RUN addgroup rootless -g 10001 && adduser rootless -G rootless -u 10000 -D
+
 
 CMD ["dotnet", "run","--no-build"]
