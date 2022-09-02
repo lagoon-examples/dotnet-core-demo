@@ -14,7 +14,7 @@ namespace RazorPagesMovie.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", 1 /* MySqlValueGenerationStrategy.IdentityColumn */),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Genre = table.Column<string>(type: "TEXT", nullable: false),

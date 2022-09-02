@@ -2,12 +2,31 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+var dbname = Environment.GetEnvironmentVariable("MARIADB_DATABASE");
+var dbuser = Environment.GetEnvironmentVariable("MARIADB_USER");
+var dbpass = Environment.GetEnvironmentVariable("MARIADB_PASSWORD");
+var dbhost = "mariadb";
+var connstring = "Server=" + dbhost + ";Database=" + dbname + ";Uid=" + dbuser + ";Pwd=" + dbpass + ";";
+var serverVersion = new MariaDbServerVersion(new Version(10, 6));
+//builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found."))
+
 builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.")));
+    options.UseMySql(connstring, serverVersion, providerOptions => providerOptions.EnableRetryOnFailure()));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<RazorPagesMovieContext>();    
+    context.Database.Migrate();
+}
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
