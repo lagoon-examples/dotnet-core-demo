@@ -10,6 +10,6 @@ namespace RazorPagesMovie.Models
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; } = string.Empty;
-        public decimal Price { get; set; }
+        public string Price { get; set; }
     }
 }
