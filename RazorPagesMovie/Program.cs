@@ -9,7 +9,7 @@ builder.Services.AddRazorPages();
 var dbname = Environment.GetEnvironmentVariable("MARIADB_DATABASE");
 var dbuser = Environment.GetEnvironmentVariable("MARIADB_USER");
 var dbpass = Environment.GetEnvironmentVariable("MARIADB_PASSWORD");
-var dbhostEnv = Environment.GetEnvironmentVariable("MARIADB_PASSWORD");
+var dbhostEnv = Environment.GetEnvironmentVariable("MARIADB_HOST");
 var dbhost = dbhostEnv != null ? dbhostEnv : "mariadb";
 var connstring = "Server=" + dbhost + ";Database=" + dbname + ";Uid=" + dbuser + ";Pwd=" + dbpass + ";";
 var serverVersion = new MariaDbServerVersion(new Version(10, 6));
