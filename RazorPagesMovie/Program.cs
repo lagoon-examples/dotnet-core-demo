@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 var dbname = Environment.GetEnvironmentVariable("MARIADB_DATABASE");
-var dbuser = Environment.GetEnvironmentVariable("MARIADB_USER");
+var dbuser = Environment.GetEnvironmentVariable("MARIADB_USERNAME");
 var dbpass = Environment.GetEnvironmentVariable("MARIADB_PASSWORD");
 var dbhostEnv = Environment.GetEnvironmentVariable("MARIADB_HOST");
 var dbhost = dbhostEnv != null ? dbhostEnv : "mariadb";
