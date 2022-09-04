@@ -9,7 +9,7 @@ x-volumes:
 x-environment:
   &default-environment
     # Route that should be used locally, if you are using pygmy, this route *must* end with .docker.amazee.io
-    LAGOON_ROUTE: &default-url http://${COMPOSE_PROJECT_NAME:-dotnet}.docker.amazee.io
+    LAGOON_ROUTE: &default-url http://${COMPOSE_PROJECT_NAME:-dotnet-example}.docker.amazee.io
     # Uncomment if you like to have the system behave like in production
     #LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
@@ -29,7 +29,7 @@ volumes:
 services:
 
   dotnet:
-    image: &cli-image ${COMPOSE_PROJECT_NAME:-dotnet-base}-cli
+    image: &cli-image ${COMPOSE_PROJECT_NAME:-dotnet-example}-cli
     networks:
       - amazeeio-network
       - default
@@ -37,7 +37,9 @@ services:
       context: .
       dockerfile: ./lagoon/dotnet.dockerfile
     labels:
-      lagoon.type: node
+      lagoon.type: basic
+    ports:
+      - "3000"
     << : *default-volumes
     environment:
       << : *default-environment # loads the defined environment variables from the top
@@ -57,7 +59,7 @@ services:
       - dotnet 
     environment:
       << : *default-environment # loads the defined environment variables from the top
-      LAGOON_LOCALDEV_URL: dotnet.docker.amazee.io
+      LAGOON_LOCALDEV_URL: dotnet-example.docker.amazee.io
     networks:
       - amazeeio-network
       - default
