@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
@@ -13,8 +14,8 @@ namespace RazorPagesMovie.Migrations
                 name: "Movie",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", 1 /* MySqlValueGenerationStrategy.IdentityColumn */),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Genre = table.Column<string>(type: "TEXT", nullable: false),

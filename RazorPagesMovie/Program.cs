@@ -13,7 +13,6 @@ var dbhostEnv = Environment.GetEnvironmentVariable("MARIADB_HOST");
 var dbhost = dbhostEnv != null ? dbhostEnv : "mariadb";
 var connstring = "Server=" + dbhost + ";Database=" + dbname + ";Uid=" + dbuser + ";Pwd=" + dbpass + ";";
 var serverVersion = new MariaDbServerVersion(new Version(10, 6));
-//builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found."))
 
 builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
     options.UseMySql(connstring, serverVersion, providerOptions => providerOptions.EnableRetryOnFailure()));
