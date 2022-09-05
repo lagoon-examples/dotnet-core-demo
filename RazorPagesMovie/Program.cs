@@ -6,12 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-var dbname = Environment.GetEnvironmentVariable("MARIADB_DATABASE");
-var dbuser = Environment.GetEnvironmentVariable("MARIADB_USERNAME");
-var dbpass = Environment.GetEnvironmentVariable("MARIADB_PASSWORD");
-var dbhostEnv = Environment.GetEnvironmentVariable("MARIADB_HOST");
-var dbhost = dbhostEnv != null ? dbhostEnv : "mariadb";
-var connstring = "Server=" + dbhost + ";Database=" + dbname + ";Uid=" + dbuser + ";Pwd=" + dbpass + ";";
+var dbname = Environment.GetEnvironmentVariable("MARIADB_DATABASE") ?? "lagoon";
+var dbuser = Environment.GetEnvironmentVariable("MARIADB_USER") ?? "lagoon";
+var dbpass = Environment.GetEnvironmentVariable("MARIADB_PASSWORD") ?? "lagoon";
+var dbhost = Environment.GetEnvironmentVariable("MARIADB_HOST") ?? "mariadb";
+var dbport = Environment.GetEnvironmentVariable("MARIADB_PORT") ?? "3306";
+var connstring = "Server=" + dbhost + ";Port=" + dbport + ";Database=" + dbname + ";Uid=" + dbuser + ";Pwd=" + dbpass + ";";
 var serverVersion = new MariaDbServerVersion(new Version(10, 6));
 
 builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
