@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 var dbname = Environment.GetEnvironmentVariable("MARIADB_DATABASE") ?? "lagoon";
-var dbuser = Environment.GetEnvironmentVariable("MARIADB_USER") ?? "lagoon";
+var dbuser = Environment.GetEnvironmentVariable("MARIADB_USERNAME") ?? "lagoon";
 var dbpass = Environment.GetEnvironmentVariable("MARIADB_PASSWORD") ?? "lagoon";
 var dbhost = Environment.GetEnvironmentVariable("MARIADB_HOST") ?? "mariadb";
 var dbport = Environment.GetEnvironmentVariable("MARIADB_PORT") ?? "3306";
