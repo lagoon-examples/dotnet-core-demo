@@ -1,4 +1,4 @@
-FROM testlagoon/dotnet-6-sdk:pr-550
+FROM testlagoon/dotnet-8-sdk:pr-550
 
 COPY RazorPagesMovie /app
 WORKDIR /app/
