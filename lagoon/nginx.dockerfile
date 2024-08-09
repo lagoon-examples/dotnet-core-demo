@@ -1,5 +1,5 @@
 ARG DOTNET_IMAGE
-FROM ${DOTNET_IMAGE} as cli
+FROM ${DOTNET_IMAGE} AS cli
 
 FROM uselagoon/nginx:latest
 
